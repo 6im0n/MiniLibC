@@ -1,0 +1,24 @@
+# Compiled object files
+*.o
+*.so
+
+# Executable files
+*.exe
+
+# Compiled libraries
+*.lib
+
+# Build output directory
+build/
+
+# IDE specific files
+.vscode/
+.idea/
+
+# test files 
+ftest-bin
+test.out
+a.out
+*.gcno
+*.gcda
+tester.c

@@ -1,0 +1,29 @@
+name = "ftest auto tests"
+
+[[test]]
+type = "command"
+name = "Test hello"
+command = "gcc test.c -o ftest-bin && ./ftest-bin"
+[test.expected]
+stdout = 'Hello, World !'
+stderr = ""
+exit_code = 0
+
+[[test]]
+type = "command"
+name = "Test strlen with str"
+command = "gcc strlen.c -o ftest-bin && ./ftest-bin test"
+[test.expected]
+stdout = '4'
+stderr = ""
+exit_code = 0
+
+
+[[test]]
+type = "command"
+name = "Test strlen no str"
+command = "gcc strlen.c -o ftest-bin && ./ftest-bin"
+[test.expected]
+stdout = '0'
+stderr = ""
+exit_code = 0
