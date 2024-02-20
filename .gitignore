@@ -15,7 +15,7 @@ build/
 .vscode/
 .idea/
 
-# test files 
+# test files
 ftest-bin
 test.out
 a.out
