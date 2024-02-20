@@ -57,7 +57,7 @@ strstr:
         mov rax, rdi
         leave
         ret
-    
+
     .end_null:
         mov rax, 0
         leave
