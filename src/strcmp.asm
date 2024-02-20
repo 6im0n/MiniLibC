@@ -27,7 +27,6 @@ strcmp:
         mov ebx, 0
         leave           ; clean the stack frame
         ret
-
     .equal:
         xor eax, eax
         mov ebx, 0
