@@ -8,42 +8,57 @@ SECTION .text
 global strstr
 
 strstr:
-	enter 0, 0
-    mov rax, 0
-    mov ecx, 0
-    mov ebx, 0
+    enter 0, 0
+    mov rcx, 0
+    mov rdx, 0
+    mov rcx, 0
+    push rcx
+    mov al, [rdi]
+    mov bl, [rsi]
+    cmp bl, 0
+    jz .end_find_str
+    cmp al, 0
+    jz .end_null
 
-    .record_curent_state:
-        mov rax, rdi    ;pre-regsister the current state of rdi pointer to the rax
-        push rsi        ;save current value in the rsi register, so if we want to pop (restore) it later we can go back to this value
+    .main_loop:
+        mov al, [rdi + rcx]
+        mov bl, [rsi + rdx]
+        cmp al, 0
+        je .end_null
+        cmp bl, 0
+        je .end_find_str
+        cmp al, bl
+        je .next
+        inc rcx
+        jmp .main_loop
 
-    .loop:
-        movzx ecx, byte [rsi]
-        movzx ebx, byte [rsi]
-        cmp cl, bl
-        jne .next_step
-        inc rsi
-        inc rdi
-        test bl, bl
-        jz .found
-        jmp .loop
+    .next:
+       push rcx
+        .sub_loop:
+            mov al, [rdi + rcx]
+            mov bl, [rsi + rdx]
+            cmp bl, 0
+            je .end_find_str
+            cmp al, bl
+            jne .reset_loop
+            inc rcx
+            inc rdx
+            jmp .sub_loop
 
-    .next_step:
-        pop rsi          ;restore the last of rsi we register L16
-        inc rsi
-        movzx ecx, byte [rdi]
-        cmp cl, cl
-        je .record_curent_state
+    .reset_loop:
+        pop rcx
+        inc rcx
+        mov rdx, 0
+        jmp .main_loop
 
-    .not_found:
-        xor rax, rax
+    .end_find_str:
+        pop rcx
+        add rdi, rcx
+        mov rax, rdi
+        leave
         ret
-
-    .found:
-        pop rsi
-        pop rbx
-        pop rdi
-        mov rax, rsi
+    
+    .end_null:
+        mov rax, 0
+        leave
         ret
-
-
