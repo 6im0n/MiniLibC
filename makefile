@@ -29,8 +29,8 @@ CC				=		gcc
 #ASM FLAGS
 ASM				=		nasm
 LD 				=		ld
-LDFLAGS			=		-shared
-NASMFLAGS		=		-f elf64
+LDFLAGS			=		-fPIC -shared
+NASMFLAGS		=		-f elf64 -Werror
 
 
 
@@ -38,12 +38,12 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			@$(LD) $(LDFLAGS) -o $(NAME) $(OBJ) 							\
-			&& echo -e "$(GREEN)-------- COMPILED --------$(END)"		\
+			&& echo -e "$(GREEN)-------- COMPILED --------$(END)"			\
 			|| echo -e "$(RED)-------- $(BOLD)ERROR$(END)$(RED) --------$(END)"
 
 %.o:		%.asm
-			@$(ASM) $(NASMFLAGS) -o $@ $<								\
-			&& echo -e "$(GREEN)[OK]$(BOLD)" $< "$(END)"				\
+			@$(ASM) $(NASMFLAGS) -o $@ $<									\
+			&& echo -e "$(GREEN)[OK]$(BOLD)" $< "$(END)"					\
 			|| echo -e "$(RED)[KO]$(BOLD)" $< "$(END)"
 
 clean:
