@@ -12,7 +12,7 @@ _SRC			=		write.asm \
 						strchr.asm \
 						strrchr.asm \
 						strcmp.asm \
-						# strstr.asm \
+						strstr.asm \
 
 SRCDIR			=		src/
 SRC 			=		$(addprefix $(SRCDIR), $(_SRC))
