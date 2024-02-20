@@ -37,17 +37,21 @@ Test(strrchr, character_not_found) {
     cr_assert_eq(strrchr(str, c), my_strrchr(str, c));
 }
 
-// Test(strrchr, null_character) {
-//     char *str = "Hello World";
-//     int c = '\0';
-//     cr_assert_eq(strrchr(str, c), my_strrchr(str, c));
-// }
+Test(strrchr, null_character) {
+    char *str = "Hello World";
+    int c = '\0';
+    char *my_str = my_strrchr(str, c);
+    char *lib_str = strrchr(str, c);
+    cr_assert_eq(lib_str, my_str);
+}
 
-// Test(strrchr, null_character_mid) {
-//     char *str = "Hello\0World";
-//     int c = '\0';
-//     cr_assert_eq(strrchr(str, c), my_strrchr(str, c));
-// }
+Test(strrchr, null_character_mid) {
+    char *str = "Hello\0World";
+    int c = '\0';
+    char *my_str = my_strrchr(str, c);
+    char *lib_str = strrchr(str, c);
+    cr_assert_eq(lib_str, my_str);
+}
 
 Test(strrchr, null_string) {
     char *str = "";
