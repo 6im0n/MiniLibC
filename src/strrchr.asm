@@ -3,7 +3,8 @@
 ; AUTHOR: Simon Ganier-Lombard
 ; DATE: [feb 2024]
 
-
+BITS 64
+SECTION .text
 global strrchr                   ; export main
 
 strrchr:
