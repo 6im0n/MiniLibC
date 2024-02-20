@@ -80,3 +80,35 @@ Test(strcmp, one_letter){
     cr_assert_eq(strcmp(str1, str2), 0);
     cr_assert_eq(0, my_strcmp(str1, str2));
 }
+
+Test(strcmp, special_characters) {
+    char *str1 = "Hello, world! \n\t";
+    char *str2 = "Hello, world! \n\t";
+    int res = strcmp(str1, str2);
+    int my_res = my_strcmp(str1, str2);
+    cr_assert_eq(res, my_res);
+}
+
+Test(strcmp, non_printable_characters) {
+    char *str1 = "Hello\0World";
+    char *str2 = "Hello\0World";
+    int res = strcmp(str1, str2);
+    int my_res = my_strcmp(str1, str2);
+    cr_assert_eq(res, my_res);
+}
+
+Test(strcmp, whitespace_differences) {
+    char *str1 = "Hello World";
+    char *str2 = "Hello  World";
+    int res = strcmp(str1, str2);
+    int my_res = my_strcmp(str1, str2);
+    cr_assert_eq(res, my_res);
+}
+
+Test(strcmp, numeric_characters) {
+    char *str1 = "12345";
+    char *str2 = "54321";
+    int res = strcmp(str1, str2);
+    int my_res = my_strcmp(str1, str2);
+    cr_assert_eq(res, my_res);
+}
