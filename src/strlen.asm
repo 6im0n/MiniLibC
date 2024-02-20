@@ -5,7 +5,7 @@
 
 BITS 64
 SECTION .text
-global strlen                   ; export main
+global strlen                   ; export strlen
 
 strlen:
 
@@ -15,14 +15,14 @@ strlen:
 	enter 0, 0                  ; Prologue
 	mov rax, 0                  ; Initialize the counter to zero
 
-.loop:							; <-------------------------------------------------------loop-------------------------------------------------<|
-	test rdi, rdi               ; Check if rdi is null																							|
-	jz .done                    ; Jump to .done if rdi is null cf flags bootstrrap) => ZF rezo result is null >--------->>>-------->|		    |
-	cmp BYTE [rdi + rax], 0  	; is like str++ (fisrt character adress of the string plus the counter) in c to the byte 0 so "\0"	|			|
-	je .done					; Jump to done if the comparaison cmp BYTE of the string end with  0 >-------------->>>> -----------|---->|	    |
-	inc rax						; otherwise we increment rax (the register using to return value)	  								|	  |		|
-	jmp .loop					; return at the start of the loop >------------------------------>>>--------------------------------|-----|---->|
-								;																									|	  |
-.done:							;   <------------------------------------------<<<--------------------------------------------------|<---<|
-	leave                       ; Epilogue
-	ret                         ; Return
+	.loop:							; <-------------------------------------------------------loop-------------------------------------------------<|
+		test rdi, rdi               ; Check if rdi is null																							|
+		jz .done                    ; Jump to .done if rdi is null cf flags bootstrrap) => ZF rezo result is null >--------->>>-------->|		    |
+		cmp BYTE [rdi + rax], 0  	; is like str++ (fisrt character adress of the string plus the counter) in c to the byte 0 so "\0"	|			|
+		je .done					; Jump to done if the comparaison cmp BYTE of the string end with  0 >-------------->>>> -----------|---->|	    |
+		inc rax						; otherwise we increment rax (the register using to return value)	  								|	  |		|
+		jmp .loop					; return at the start of the loop >------------------------------>>>--------------------------------|-----|---->|
+									;																									|	  |
+	.done:							;   <------------------------------------------<<<--------------------------------------------------|<---<|
+		leave                       ; Epilogue
+		ret                         ; Return

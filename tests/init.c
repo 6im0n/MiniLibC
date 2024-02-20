@@ -58,3 +58,38 @@ char *my_strrchr(const char *s, int c)
     dlclose(handle);
     return str;
 }
+
+
+int my_strcmp(const char *s1, const char *s2)
+{
+    int (*test)(const char *s1, const char *s2);
+    int str;
+
+    void *handle = dlopen("./libasm.so", RTLD_LAZY);
+
+    if (!handle)
+        return -4242;
+    test = dlsym(handle, "strcmp");
+    if (!test)
+        return -4242;
+    str = test(s1, s2);
+    dlclose(handle);
+    return str;
+}
+
+char *my_strstr(const char *str1, const char *str2)
+{
+    char *(*test)(const char *str1, const char *str2);
+    char *str;
+
+    void *handle = dlopen("./libasm.so", RTLD_LAZY);
+
+    if (!handle)
+        return NULL;
+    test = dlsym(handle, "strstr");
+    if (!test)
+        return NULL;
+    str = test(str1, str2);
+    dlclose(handle);
+    return str;
+}

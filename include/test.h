@@ -21,3 +21,5 @@ void init(void);
 size_t my_strlen(const char *str);
 char *my_strchr(const char *s, int c);
 char *my_strrchr(const char *s, int c);
+int my_strcmp(const char *s1, const char *s2);
+char *my_strstr(const char *s1, const char *s2);

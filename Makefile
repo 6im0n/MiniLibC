@@ -11,6 +11,8 @@ _SRC			=		write.asm \
 						strlen.asm \
 						strchr.asm \
 						strrchr.asm \
+						strcmp.asm \
+						# strstr.asm \
 
 SRCDIR			=		src/
 SRC 			=		$(addprefix $(SRCDIR), $(_SRC))
@@ -61,7 +63,7 @@ re:			fclean all
 tests_run: 	fclean all $(NAME)
 			@$(CC) -o tests/test.out $(SRC_TESTS) $(CFLAGS_TEST)
 			./tests/test.out --verbose
-			gcovr --exclude tests/
+			# gcovr --exclude tests/
 
 tests_clean:
 			rm -f *.gcda
