@@ -93,3 +93,20 @@ char *my_strstr(const char *str1, const char *str2)
     dlclose(handle);
     return str;
 }
+
+int my_strncmp(const char *s1, const char *s2, size_t n)
+{
+    int (*test)(const char *s1, const char *s2, size_t n);
+    int str;
+
+    void *handle = dlopen("./libasm.so", RTLD_LAZY);
+
+    if (!handle)
+        return -4242;
+    test = dlsym(handle, "strncmp");
+    if (!test)
+        return -4242;
+    str = test(s1, s2, n);
+    dlclose(handle);
+    return str;
+}
