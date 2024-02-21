@@ -29,5 +29,7 @@ char *my_strncat(char *dest, const char *src, size_t n);
 char *my_strcpy(char *dest, const char *src);
 char *my_strcat(char *dest, const char *src);
 int my_strncmp(const char *s1, const char *s2, size_t n);
+char *my_strdup(const char *s);
+int my_strcasecmp(const char *s1, const char *s2);
 size_t my_strcspn(const char *s, const char *reject);
 size_t my_strspn(const char *s, const char *accept);

@@ -110,3 +110,20 @@ int my_strncmp(const char *s1, const char *s2, size_t n)
     dlclose(handle);
     return str;
 }
+
+int my_strcasecmp(const char *s1, const char *s2)
+{
+    int (*test)(const char *s1, const char *s2);
+    int str;
+
+    void *handle = dlopen("./libasm.so", RTLD_LAZY);
+
+    if (!handle)
+        return -4242;
+    test = dlsym(handle, "strcasecmp");
+    if (!test)
+        return -4242;
+    str = test(s1, s2);
+    dlclose(handle);
+    return str;
+}
