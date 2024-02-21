@@ -15,6 +15,7 @@ _SRC			=		write.asm \
 						strstr.asm \
 						strncmp.asm \
 						strcasecmp.asm \
+						strpbrk.asm \
 
 
 SRCDIR			=		src/
