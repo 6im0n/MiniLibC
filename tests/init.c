@@ -127,3 +127,20 @@ int my_strcasecmp(const char *s1, const char *s2)
     dlclose(handle);
     return str;
 }
+
+char *my_strpbrk(const char *s1, const char *s2)
+{
+    char *(*test)(const char *s1, const char *s2);
+    char *str;
+
+    void *handle = dlopen("./libasm.so", RTLD_LAZY);
+
+    if (!handle)
+        return NULL;
+    test = dlsym(handle, "strpbrk");
+    if (!test)
+        return NULL;
+    str = test(s1, s2);
+    dlclose(handle);
+    return str;
+}
