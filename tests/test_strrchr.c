@@ -38,7 +38,7 @@ Test(strrchr, character_not_found) {
 }
 
 Test(strrchr, null_character) {
-    char *str = "Hello World";
+    char *str = "";
     int c = '\0';
     char *my_str = my_strrchr(str, c);
     char *lib_str = strrchr(str, c);
