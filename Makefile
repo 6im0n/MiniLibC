@@ -7,8 +7,7 @@
 
 # PARAM
 NAME			=		libasm.so
-_SRC			=		write.asm \
-						strlen.asm \
+_SRC			=		strlen.asm \
 						strchr.asm \
 						strrchr.asm \
 						strcmp.asm \
@@ -17,6 +16,7 @@ _SRC			=		write.asm \
 						strcasecmp.asm \
 						strpbrk.asm \
 						strcspn.asm \
+						memset.asm \
 
 
 SRCDIR			=		src/
