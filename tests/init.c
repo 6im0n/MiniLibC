@@ -144,3 +144,20 @@ char *my_strpbrk(const char *s1, const char *s2)
     dlclose(handle);
     return str;
 }
+
+size_t my_strcspn(const char *s1, const char *s2)
+{
+    int (*test)(const char *s1, const char *s2);
+    int str;
+
+    void *handle = dlopen("./libasm.so", RTLD_LAZY);
+
+    if (!handle)
+        return -4242;
+    test = dlsym(handle, "strcspn");
+    if (!test)
+        return -4242;
+    str = test(s1, s2);
+    dlclose(handle);
+    return str;
+}
