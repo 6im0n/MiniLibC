@@ -18,6 +18,7 @@ _SRC			=		strlen.asm \
 						strcspn.asm \
 						memset.asm \
 						memcpy.asm \
+						memmove.asm \
 
 
 SRCDIR			=		src/
