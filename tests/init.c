@@ -161,3 +161,20 @@ size_t my_strcspn(const char *s1, const char *s2)
     dlclose(handle);
     return str;
 }
+
+void *my_memset(void *s, int c, size_t n)
+{
+    void *(*test)(void *s, int c, size_t n);
+    void *str;
+
+    void *handle = dlopen("./libasm.so", RTLD_LAZY);
+
+    if (!handle)
+        return NULL;
+    test = dlsym(handle, "memset");
+    if (!test)
+        return NULL;
+    str = test(s, c, n);
+    dlclose(handle);
+    return str;
+}
