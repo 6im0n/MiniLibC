@@ -19,7 +19,9 @@ _SRC			=		strlen.asm \
 						memset.asm \
 						memcpy.asm \
 						memmove.asm \
-
+						rindex.asm \
+						index.asm \
+						memfrob.asm \
 
 SRCDIR			=		src/
 SRC 			=		$(addprefix $(SRCDIR), $(_SRC))
