@@ -195,3 +195,20 @@ void *my_memcpy(void *dest, const void *src, size_t n)
     dlclose(handle);
     return str;
 }
+
+void *my_memmove(void *dest, const void *src, size_t n)
+{
+    void *(*test)(void *dest, const void *src, size_t n);
+    void *str;
+
+    void *handle = dlopen("./libasm.so", RTLD_LAZY);
+
+    if (!handle)
+        return NULL;
+    test = dlsym(handle, "memmove");
+    if (!test)
+        return NULL;
+    str = test(dest, src, n);
+    dlclose(handle);
+    return str;
+}
